@@ -9,28 +9,28 @@ namespace ClassLibrary
     //deklaracja publicznej klasy: Phone
     public class Phone
     {
-        //deklaracja prywatnych pola owner - przechowuje nazwê w³aœciciela telefonu
+        //deklaracja prywatnego pola owner - przechowuje ono nazwê w³aœciciela telefonu
         private string owner;
 
-        //deklaracja prywatnych pola phoneNumber - przechowuje numer telefonu, który sk³ada siê z 9 cyfr
+        //deklaracja prywatnego pola phoneNumber - przechowuje numer telefonu, który musi byæ ci¹giem z³o¿onym z 9 cyfr
         // string of 9 digits
         private string phoneNumber;
 
-        //deklaracja prywatnego pola phoneBook, s³owiek przechowuj¹cy ksi¹zkê telefoniczn¹ z kontaktami, w formie par <nazwa, numer>  
+        //deklaracja prywatnego pola phoneBook - przechowuje ksi¹¿kê telefoniczn¹ z kontaktami, w formie par stringów <nazwa, numer>  
         // Dictionary of <name, number>
         private readonly Dictionary<string, string> phoneBook;
 
-        //deklaracja publicznej w³aœciwoœci PhoneBookCapacity, która zwraca pojemnoœæ ksi¹¿ki telefonicznej
+        //deklaracja publicznej w³aœciwoœci PhoneBookCapacity, która zwraca maksymaln¹ pojemnoœæ ksi¹¿ki telefonicznej
         public int PhoneBookCapacity => 100;
 
-        //deklaracja konstruktora klasy Phone, który przyjmuje dwa argumenty: owner - nazwa w³aœciciela telefonu, phoneNumber - numer telefonu
+        //deklaracja publicznego konstruktora klasy Phone, który przyjmuje dwa argumenty: owner - nazwa w³aœciciela telefonu, phoneNumber - numer telefonu 
         public Phone(string owner, string phoneNumber)
         {
-            //przypisanie wartoœci polu owner
+            //przypisanie wartoœci polu owner - ustawianie w³aœciciela telefonu
             Owner = owner;
-            //przypisanie wartoœci polu phoneNumber
+            //przypisanie wartoœci polu phoneNumber - ustawianie numeru telefonu
             PhoneNumber = phoneNumber;
-            //inicjalizacja s³ownika (naszej ksi¹¿ki telefonicznej) phoneBook
+            //inicjalizacja s³ownika (naszej ksi¹¿ki telefonicznej) phoneBook - utworzenie pustej ksi¹¿ki telefonicznej
             phoneBook = new Dictionary<string, string>();
         }
         //deklaracja w³aœciwoœci Owner, która zwraca nazwê w³aœciciela telefonu typu public string
@@ -45,6 +45,7 @@ namespace ClassLibrary
                 if (string.IsNullOrEmpty(value))
                     //rzucenie wyj¹tku ArgumentException z odpowiedni¹ informacj¹, jeœli nazwa w³aœciciela jest pusta lub null
                     throw new ArgumentException($"Owner name is empty or null!");
+
                 //przypisanie wartoœci polu owner - ustawianie wartoœci w³aœciciela 
                 owner = value;
             }
@@ -54,12 +55,12 @@ namespace ClassLibrary
         private bool IsCorrectPhoneNumber(string number)
             => (number != null) && number.Length == 9 && number.All(c => char.IsDigit(c));
 
-        //deklaracja w³aœciwoœci PhoneNumber, która zwraca numer telefonu typu public string
+        //deklaracja w³aœciwoœci PhoneNumber, do pobierania i ustawiania numeru telefonu
         public string PhoneNumber
         {
             //getter w³aœciwoœci PhoneNumber - pobieranie wartoœci numeru telefonu 
             get => phoneNumber;
-            //setter w³aœciwoœci PhoneNumber
+            //setter w³aœciwoœci PhoneNumber 
             private set
             {
                 //jeœli wartoœæ jest pusta lub null rzucamy wyj¹tek ArgumentException z odpowiedni¹ informacj¹
@@ -69,7 +70,7 @@ namespace ClassLibrary
 
                 //jeœli numer telefonu nie jest poprawny (nie sk³ada siê z 9 cyfr) rzucamy wyj¹tek ArgumentException z odpowiedni¹ informacj¹
                 if (!IsCorrectPhoneNumber(value))
-                    //rzucenie wyj¹tku ArgumentException z odpowiedni¹ informacj¹, jeœli numer telefonu nie sk³ada siê z 9 cyfr
+                    //rzucenie wyj¹tku ArgumentException z odpowiedni¹ informacj¹, jeœli numer telefonu jest niepoprawny
                     throw new ArgumentException($"Invalid phone number!");
 
                 //przypisanie wartoœci polu phoneNumber - ustawianie wartoœci numeru telefonu
@@ -80,7 +81,7 @@ namespace ClassLibrary
         //deklaracja publicznej w³aœciwoœci Count, która zwraca iloœæ kontaktów w ksi¹¿ce telefonicznej
         public int Count => phoneBook.Count;
 
-        //deklaracja metody AddContact, która dodaje kontakt do ksi¹¿ki telefonicznej
+        //deklaracja publicznej metody AddContact, która dodaje kontakt do ksi¹¿ki telefonicznej
         public bool AddContact(string name, string number)
         {
             //jeœli ksi¹¿ka telefoniczna jest pe³na (iloœæ kontaktów równa pojemnoœci ksi¹¿ki telefonicznej) rzucamy wyj¹tek InvalidOperationException z odpowiedni¹ informacj¹
@@ -102,15 +103,19 @@ namespace ClassLibrary
             return false;
         }
 
-
+        //deklaracja publicznej metody Call do dzownienia, do osoby na podstawie podanej nazwy
         public string Call(string name)
         {
+            //jeœli ksi¹¿ka telefoniczna zawiera kontakt o podanej nazwie, dzwonimy do osoby
             if (phoneBook.ContainsKey(name))
             {
+                //pobranie numeru telefonu osoby o podanej nazwie
                 var number = phoneBook[name];
+                //zwrócenie informacji o dzwonieniu do osoby o podanej nazwie
                 return $"Calling {number} ({name}) ...";
             }
 
+            //rzucenie wyj¹tku InvalidOperationException z odpowiedni¹ informacj¹, jeœli osoba o podanej nazwie nie istnieje w ksi¹¿ce telefonicznej
             throw new InvalidOperationException("Person doesn't exists!");
         }
     }
