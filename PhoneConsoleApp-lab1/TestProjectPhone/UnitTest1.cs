@@ -39,9 +39,7 @@ namespace TestProjectPhone
             var phone = new Phone(wlasciciel, numerTelefonu);
 
             //Assert - sprawdzenie poprawnoœci dzia³ania testowanego kodu
-
-            //Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczone w ExpectedException powy¿ej
-
+            //Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony w ExpectedException powy¿ej, b³¹d wyskoczy gdy w³aœciciel bêdzie pusty
         }
 
         [TestMethod]
@@ -56,7 +54,38 @@ namespace TestProjectPhone
             var phone = new Phone(wlasciciel, numerTelefonu);
 
             //Assert - sprawdzenie poprawnoœci dzia³ania testowanego kodu
-
+            //Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki 
         }
+
+        [TestMethod]
+        public void Test_Konstruktor_AddContact_PoprawneDane()
+        {
+            // Arrange - przygotowanie danych testowych
+            var phone = new Phone("Bacior", "123456789");
+            var contactName = "Tomczyk";
+            var contactNumber = "987654321";
+
+            // Act - wykonanie testowanego kodu
+            var result = phone.AddContact(contactName, contactNumber);
+
+            // Assert - sprawdzenie poprawnoœci wyników
+            Assert.IsTrue(result); // Sprawdzenie, czy kontakt zosta³ dodany
+            Assert.AreEqual(1, phone.Count); // Sprawdzenie, czy liczba kontaktów wynosi 1
+        }
+
+        [TestMethod]
+        public void Test_Konstruktor_Call_Istniaj¹ca_Osoba()
+        {
+            //Arrange - przygotowanie danych testowych
+            var phone = new Phone("Bacior", "123456789");
+            phone.AddContact("Tomczyk", "987654321");
+
+            //Act - wykonanie testowanego kodu
+            var wynik = phone.Call("Tomczyk");
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            Assert.AreEqual("Calling 987654321 (Tomczyk) ...", wynik); 
+        }
+
     }
 }
