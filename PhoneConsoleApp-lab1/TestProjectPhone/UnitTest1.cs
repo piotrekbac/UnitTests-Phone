@@ -115,5 +115,72 @@ namespace TestProjectPhone
             Assert.AreEqual("Calling 987654321 (Tomczyk) ...", wynik); //Sprawdzenie, czy dzwonimy do osoby o nazwie Tomczyk
         }
 
+
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
+        [TestMethod]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
+        [ExpectedException(typeof(InvalidOperationException))]
+
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
+        public void Test_Konstruktor_Call_Nieistniej¹ca_Osoba()
+        {
+            //Arrange - przygotowanie danych testowych
+            var phone = new Phone("Bacior", "123456789");           //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+            //Act - wykonanie testowanego kodu
+            phone.Call("£eu£eu");                                   //Wywo³anie metody Call dla osoby o nieistniej¹cej nazwie "£eu£eu"
+
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony 
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+        }
+
+
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
+        [TestMethod]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
+        [ExpectedException(typeof(InvalidOperationException))]
+
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
+        public void Test_Konstruktor_AddContact_Pe³na_Ksi¹¿ka()
+        {
+            //Arrange - przygotowanie danych testowych
+            var phone = new Phone("Bacior", "123456789");           //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+            //Act - wykonanie testowanego kodu
+            for (int i = 0; i < phone.PhoneBookCapacity; i++)       //Dodanie kontaktów do ksi¹¿ki telefonicznej
+            {
+                phone.AddContact("Kontakt" + i, "12345678");        //Dodanie kontaktów o nazwach Kontakt0, Kontakt1, Kontakt2, itd.
+            }
+
+            phone.AddContact("Kontakt", "12345678");               //Dodanie kontaktu o nazwie Kontakt
+
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            /* Wymagane jest rzucenie wyj¹tku InvalidOperationException, który mamy oznaczony
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+        }
+
+
+        [TestMethod]
+        public void Test_Konstruktor_AddContact_Istniaj¹cyKontakt()
+        {
+            //Arrange - przygotowanie danych testowych
+            var phone = new Phone("Bacior", "123456789");           //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+            var kontakt = "Pawe³";
+            var numer = "987654321";
+            phone.AddContact(kontakt, numer);                       //Dodanie kontaktu o nazwie Pawe³ i numerze 987654321
+
+            //Act - wykonanie testowanego kodu
+            var wynik = phone.AddContact(kontakt, numer);           //Dodanie kontaktu o nazwie Pawe³ i numerze 987654321
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            Assert.IsFalse(wynik);                                  //Sprawdzenie, czy kontakt nie zosta³ dodany
+            Assert.AreEqual(1, phone.Count);                        //Sprawdzenie, czy liczba kontaktów wynosi 1
+
+        }
     }
 }
