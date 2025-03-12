@@ -1,5 +1,6 @@
 using ClassLibrary;
 
+//Piotr Bacior - Informatyka stosowana - I rok WSEI - 15 722 
 namespace TestProjectPhone
     
 {
@@ -13,7 +14,7 @@ namespace TestProjectPhone
             //AAA
 
             //Arrange - przygotowanie danych testowych
-            var wlasciciel = "Molenda";
+            var wlasciciel = "Bacior";
             var numerTelefonu = "123456789";
 
             //Act - wykonanie testowanego kodu 
@@ -28,14 +29,14 @@ namespace TestProjectPhone
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Test_Konstruktor_EmptyOwner()
+        public void Test_Konstruktor_Pusty_Wlascicel()
         {
             //Arange - przygotowanie danych testowych 
-            var owner = "";
-            var phoneNumber = "123456789";
+            var wlasciciel = "";
+            var numerTelefonu = "123456789";
 
             //Act - wykonanie testowanego kodu
-            var phone = new Phone(owner, phoneNumber);
+            var phone = new Phone(wlasciciel, numerTelefonu);
 
             //Assert - sprawdzenie poprawnoœci dzia³ania testowanego kodu
 
@@ -43,6 +44,19 @@ namespace TestProjectPhone
 
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_Konstruktor_Niepoprawny_Numer()
+        {
+            //Arange - przygotowanie danych testowych
+            var wlasciciel = "Bacior";
+            var numerTelefonu = "1234"; //przypadek kiedy to podany numer telefonu jest za krótki (mniejszy ni¿ 9 cyfr)
 
+            //Act - wykonanie testowanego kodu 
+            var phone = new Phone(wlasciciel, numerTelefonu);
+
+            //Assert - sprawdzenie poprawnoœci dzia³ania testowanego kodu
+
+        }
     }
 }
