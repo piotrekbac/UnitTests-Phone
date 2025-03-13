@@ -4,6 +4,7 @@ using ClassLibrary;
 namespace TestProjectPhone
     
 {
+    //deklaracja klasy UnitTest1
     [TestClass]
     public class UnitTest1
     {
@@ -156,7 +157,7 @@ namespace TestProjectPhone
                 phone.AddContact("Kontakt" + i, "12345678");        //Dodanie kontaktów o nazwach Kontakt0, Kontakt1, Kontakt2, itd.
             }
 
-            phone.AddContact("Kontakt", "12345678");               //Dodanie kontaktu o nazwie Kontakt
+            phone.AddContact("Kontakt", "12345678");                //Dodanie kontaktu o nazwie Kontakt
 
 
             //Assert - sprawdzenie poprawnoœci wyników
