@@ -182,5 +182,66 @@ namespace TestProjectPhone
             Assert.AreEqual(1, phone.Count);                        //Sprawdzenie, czy liczba kontaktów wynosi 1
 
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_Konstruktor_Pusty_NumerTelefonu()
+        {
+            //Arrange - przygotowanie danych testowych
+            var wlasciciel = "Bacior";                              //przypadek kiedy w³aœcicielem telefonu jest Bacior
+            var numerTelefonu = "";                                 //przypadek kiedy numer telefonu jest pusty
+
+            //Act - wykonanie testowanego kodu
+            var wynik = new Phone(wlasciciel, numerTelefonu);       //utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_Konstruktor_Null_NumerTelefonu()
+        {
+            //Arrange - przygotowanie danych testowych
+            var wlasciciel = "Bacior";                              //przypadek kiedy w³aœcicielem telefonu jest Bacior
+            string numerTelefonu = null;                            //przypadek kiedy numer telefonu jest null
+
+            //Act - wykonanie testowanego kodu
+            var wynik = new Phone(wlasciciel, numerTelefonu);       //utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+        }
+
+        [TestMethod]
+        public void Test_KsiazkaTelefonicznaCapacity()
+        {
+            //Arrange - przygotowanie danych testowych
+            var telefon = new Phone("Bacior", "123456789");         //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+            //Act - wykonanie testowanego kodu
+            var pojemnoœæ = telefon.PhoneBookCapacity;              //Pobranie pojemnoœci ksi¹¿ki telefonicznej
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            Assert.AreEqual(100, pojemnoœæ);
+        }
+
+        [TestMethod]
+        public void Test_Count()
+        {
+            //Arrange - przygotowanie danych testowych
+            var telefon = new Phone("Bacior", "123456789");         //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+
+            //Act - wykonanie testowanego kodu
+            telefon.AddContact("Tomczyk", "987654321");             //Dodanie kontaktu o nazwie Tomczyk i numerze 987654321
+            var wynik = telefon.Count;                              //Pobranie liczby kontaktów w ksi¹¿ce telefonicznej
+
+            //Assert - sprawdzenie poprawnoœci wyników
+            Assert.AreEqual(1, wynik);                              //Sprawdzenie, czy liczba kontaktów wynosi 1
+        }
     }
 }
