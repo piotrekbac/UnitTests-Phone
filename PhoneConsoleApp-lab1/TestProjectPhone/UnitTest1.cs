@@ -120,10 +120,10 @@ namespace TestProjectPhone
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
 
-        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
         [ExpectedException(typeof(InvalidOperationException))]
 
-        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Konstruktor_Call_Nieistniej¹ca_Osoba()
         {
             //Arrange - przygotowanie danych testowych
@@ -135,17 +135,17 @@ namespace TestProjectPhone
 
             //Assert - sprawdzenie poprawnoœci wyników
             /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony 
-            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy spróbujemy zadzowniæ do nieistniej¹cej osoby */
         }
 
 
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
 
-        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
         [ExpectedException(typeof(InvalidOperationException))]
 
-        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Konstruktor_AddContact_Pe³na_Ksi¹¿ka()
         {
             //Arrange - przygotowanie danych testowych
@@ -162,11 +162,12 @@ namespace TestProjectPhone
 
             //Assert - sprawdzenie poprawnoœci wyników
             /* Wymagane jest rzucenie wyj¹tku InvalidOperationException, który mamy oznaczony
-            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy ksi¹¿ka telefoniczna bêdzie pe³na */
         }
 
-
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Konstruktor_AddContact_Istniaj¹cyKontakt()
         {
             //Arrange - przygotowanie danych testowych
@@ -176,7 +177,7 @@ namespace TestProjectPhone
             phone.AddContact(kontakt, numer);                       //Dodanie kontaktu o nazwie Pawe³ i numerze 987654321
 
             //Act - wykonanie testowanego kodu
-            var wynik = phone.AddContact(kontakt, numer);           //Dodanie kontaktu o nazwie Pawe³ i numerze 987654321
+            var wynik = phone.AddContact(kontakt, numer);           //Ponowne dodanie kontaktu o nazwie Pawe³ i numerze 987654321 (kontakt ju¿ istnieje)
 
             //Assert - sprawdzenie poprawnoœci wyników
             Assert.IsFalse(wynik);                                  //Sprawdzenie, czy kontakt nie zosta³ dodany
@@ -184,8 +185,13 @@ namespace TestProjectPhone
 
         }
 
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
+
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
         [ExpectedException(typeof(ArgumentException))]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Konstruktor_Pusty_NumerTelefonu()
         {
             //Arrange - przygotowanie danych testowych
@@ -198,11 +204,16 @@ namespace TestProjectPhone
 
             //Assert - sprawdzenie poprawnoœci wyników
             /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony
-            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numerTelefonu bêdzie pusty */
         }
 
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
+
+        //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
         [ExpectedException(typeof(ArgumentException))]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Konstruktor_Null_NumerTelefonu()
         {
             //Arrange - przygotowanie danych testowych
@@ -215,8 +226,9 @@ namespace TestProjectPhone
 
             //Assert - sprawdzenie poprawnoœci wyników
             /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony
-            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numer bêdzie zbyt krótki */
+            w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numerTelefonu bêdzie null'em */
         }
+
 
         [TestMethod]
         public void Test_KsiazkaTelefonicznaCapacity()
