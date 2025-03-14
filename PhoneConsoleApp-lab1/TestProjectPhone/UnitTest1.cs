@@ -39,7 +39,7 @@ namespace TestProjectPhone
         //Atrybut oznaczaj¹cy, ¿e metoda powinna zakoñczyæ siê wyj¹tkiem ArgumentException
         [ExpectedException(typeof(ArgumentException))]
 
-        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora w przypadku pustego w³aœciciela telefonu
         public void Test_Konstruktor_Pusty_Wlascicel()
         {
             //Arange - przygotowanie danych testowych 
@@ -106,14 +106,14 @@ namespace TestProjectPhone
         public void Test_Konstruktor_Call_Istniaj¹ca_Osoba()
         {
             //Arrange - przygotowanie danych testowych
-            var phone = new Phone("Bacior", "123456789");           //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
-            phone.AddContact("Tomczyk", "987654321");               //Dodanie kontaktu o nazwie Tomczyk i numerze 987654321
+            var phone = new Phone("Bacior", "123456789");               //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+            phone.AddContact("Tomczyk", "987654321");                   //Dodanie kontaktu o nazwie Tomczyk i numerze 987654321
 
             //Act - wykonanie testowanego kodu
-            var wynik = phone.Call("Tomczyk");                      //Wywo³anie metody Call dla osoby o nazwie Tomczyk
+            var wynik = phone.Call("Tomczyk");                          //Wywo³anie metody Call dla osoby o nazwie Tomczyk
 
             //Assert - sprawdzenie poprawnoœci wyników
-            Assert.AreEqual("Calling 987654321 (Tomczyk) ...", wynik); //Sprawdzenie, czy dzwonimy do osoby o nazwie Tomczyk
+            Assert.AreEqual("Calling 987654321 (Tomczyk) ...", wynik);  //Sprawdzenie, czy dzwonimy do osoby o nazwie Tomczyk
         }
 
 
@@ -127,10 +127,10 @@ namespace TestProjectPhone
         public void Test_Konstruktor_Call_Nieistniej¹ca_Osoba()
         {
             //Arrange - przygotowanie danych testowych
-            var phone = new Phone("Bacior", "123456789");           //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
+            var phone = new Phone("Bacior", "123456789");               //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
 
             //Act - wykonanie testowanego kodu
-            phone.Call("£eu£eu");                                   //Wywo³anie metody Call dla osoby o nieistniej¹cej nazwie "£eu£eu"
+            phone.Call("£eu£eu");                                       //Wywo³anie metody Call dla osoby o nieistniej¹cej nazwie "£eu£eu"
 
 
             //Assert - sprawdzenie poprawnoœci wyników
