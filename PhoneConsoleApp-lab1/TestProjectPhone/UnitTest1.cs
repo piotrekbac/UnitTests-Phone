@@ -165,6 +165,7 @@ namespace TestProjectPhone
             w ExpectedException powy¿ej - b³¹d wyskoczy, gdy ksi¹¿ka telefoniczna bêdzie pe³na */
         }
 
+
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
         //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
@@ -184,6 +185,7 @@ namespace TestProjectPhone
             Assert.AreEqual(1, phone.Count);                        //Sprawdzenie, czy liczba kontaktów wynosi 1
 
         }
+
 
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
@@ -206,6 +208,7 @@ namespace TestProjectPhone
             /* Wymagane jest rzucenie wyj¹tku ArgumentException, który mamy oznaczony
             w ExpectedException powy¿ej - b³¹d wyskoczy, gdy numerTelefonu bêdzie pusty */
         }
+
 
         //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
@@ -230,7 +233,10 @@ namespace TestProjectPhone
         }
 
 
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_KsiazkaTelefonicznaCapacity()
         {
             //Arrange - przygotowanie danych testowych
@@ -240,10 +246,14 @@ namespace TestProjectPhone
             var pojemnoœæ = telefon.PhoneBookCapacity;              //Pobranie pojemnoœci ksi¹¿ki telefonicznej
 
             //Assert - sprawdzenie poprawnoœci wyników
-            Assert.AreEqual(100, pojemnoœæ);
+            Assert.AreEqual(100, pojemnoœæ);                        //Sprawdzenie, czy pojemnoœæ ksi¹¿ki telefonicznej wynosi 100
         }
 
+
+        //Test metody konstruktora z niepoprawnymi danymi wejœciowymi
         [TestMethod]
+
+        //Metoda testowa sprawdzaj¹ca poprawnoœæ dzia³ania konstruktora
         public void Test_Count()
         {
             //Arrange - przygotowanie danych testowych
