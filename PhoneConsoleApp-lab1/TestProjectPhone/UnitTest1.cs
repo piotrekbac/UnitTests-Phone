@@ -158,7 +158,7 @@ namespace TestProjectPhone
 
 
         //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-        //Poni¿ej trzy testy jednostkowe dla klasy Phone - Testy dla dodañ kontaktów do ksi¹¿ki telefonicznej (AddContact)
+        //Poni¿ej trzy testy jednostkowe dla klasy Phone - Testy dla dodawania kontaktów do ksi¹¿ki telefonicznej (AddContact) przy poprawnych danych wejœciowych
 
 
         //Test metody konstruktora z poprawnymi danymi wejœciowymi AddContact
@@ -282,7 +282,7 @@ namespace TestProjectPhone
         //Poni¿ej trzy testy jednostkowe dla klasy Phone - Testy dla w³aœciwoœci Count oraz PhoneBookCapacity (pojemnoœæ ksi¹¿ki telefonicznej)
 
 
-        //Test metody konstruktora z poprawnymi danymi wejœciowymi Count
+        //Test metody konstruktora z poprawnymi danymi wejœciowymi Ksi¹¿kaTelefonicznaCapacity
         //Atrybut oznaczaj¹cy metodê jako testow¹
         [TestMethod]
 
@@ -309,9 +309,9 @@ namespace TestProjectPhone
         {
             //Arrange - przygotowanie danych testowych
             var telefon = new Phone("Bacior", "123456789");         //Utworzenie obiektu klasy Phone z w³aœcicielem i numerem telefonu
-
-            //Act - wykonanie testowanego kodu
             telefon.AddContact("Tomczyk", "987654321");             //Dodanie kontaktu o nazwie Tomczyk i numerze 987654321
+
+            //Act - wykonanie testowanego kodu          
             var wynik = telefon.Count;                              //Pobranie liczby kontaktów w ksi¹¿ce telefonicznej
 
             //Assert - sprawdzenie poprawnoœci wyników
